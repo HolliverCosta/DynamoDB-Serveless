@@ -35,6 +35,32 @@ const serverlessConfiguration: AWS = {
     ]
     }  
   },
+  resources: {
+    Resources: {
+      ProductsTable: {
+        Type: 'AWS::DynamoDB::Table',
+        Properties: {
+          TableName: 'ProductsTable',
+          BillingMode: 'PAY_PER_REQUEST',
+          PointInTimeRecoverySpecification: {  
+            PointInTimeRecoveryEnabled: true
+          },
+          AttributeDefinitions: [
+            {
+              AttributeName: 'id',  
+              AttributeType: 'S',
+            },
+          ],
+          KeySchema: [
+            {
+              AttributeName: 'id',  
+              KeyType: 'HASH',
+            },
+          ]
+        }
+      }
+  }
+  },
 }
 
 module.exports = serverlessConfiguration;
