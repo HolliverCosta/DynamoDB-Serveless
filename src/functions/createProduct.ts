@@ -13,7 +13,7 @@ export async function handler(event: APIGatewayProxyEventV2) {
     Item: {
       id,
       name: body.name ,
-      price: body.price.toString(),
+      price: body.price,
       tags: body.tags,
     }
   })
