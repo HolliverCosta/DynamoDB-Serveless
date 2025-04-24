@@ -11,6 +11,9 @@ importers:
       '@aws-sdk/client-dynamodb':
         specifier: ^3.788.0
         version: 3.788.0
+      '@aws-sdk/lib-dynamodb':
+        specifier: ^3.789.0
+        version: 3.789.0(@aws-sdk/client-dynamodb@3.788.0)
     devDependencies:
       '@serverless/typescript':
         specifier: ^4.11.1
@@ -99,6 +102,12 @@ packages:
     resolution: {integrity: sha512-2+a4WXRc+07uiPR+zJiPGKSOWaNJQNqitkks+6Hhm/haTLJqNVTgY2OWDh2PXvwMNpKB+AlGdhE65Oy6NzUgXg==}
     engines: {node: '>=18.0.0'}
 
+  '@aws-sdk/lib-dynamodb@3.789.0':
+    resolution: {integrity: sha512-ut3d1vaHLxZCh2rc6MwghTz4DxPPoCDP0GjRUsiysG3IHx97akUt2XwPrjNkot0/Hg4JJUZzl95QCjaIf/pUxg==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      '@aws-sdk/client-dynamodb': ^3.788.0
+
   '@aws-sdk/middleware-endpoint-discovery@3.775.0':
     resolution: {integrity: sha512-L0PmjSg7t+wovRo/Lin1kpei3e7wBhrENWb1Bbccu3PWUIfxolGeWplOmNhSlXjuQe9GXjf3z8kJRYOGBMFOvw==}
     engines: {node: '>=18.0.0'}
@@ -134,6 +143,12 @@ packages:
   '@aws-sdk/types@3.775.0':
     resolution: {integrity: sha512-ZoGKwa4C9fC9Av6bdfqcW6Ix5ot05F/S4VxWR2nHuMv7hzfmAjTOcUiWT7UR4hM/U0whf84VhDtXN/DWAk52KA==}
     engines: {node: '>=18.0.0'}
+
+  '@aws-sdk/util-dynamodb@3.788.0':
+    resolution: {integrity: sha512-+7M+Lr5oroXtY3SDa4nvB1OSI6+zqjiNGbVKFdgPonArLTGsNYP5lWh5y5GksFE8A19aZun4yUSrny+pbEarhw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      '@aws-sdk/client-dynamodb': ^3.788.0
 
   '@aws-sdk/util-endpoints@3.787.0':
     resolution: {integrity: sha512-fd3zkiOkwnbdbN0Xp9TsP5SWrmv0SpT70YEdbb8wAj2DWQwiCmFszaSs+YCvhoCdmlR3Wl9Spu0pGpSAGKeYvQ==}
@@ -1629,6 +1644,16 @@ snapshots:
       mnemonist: 0.38.3
       tslib: 2.8.1
 
+  '@aws-sdk/lib-dynamodb@3.789.0(@aws-sdk/client-dynamodb@3.788.0)':
+    dependencies:
+      '@aws-sdk/client-dynamodb': 3.788.0
+      '@aws-sdk/core': 3.775.0
+      '@aws-sdk/util-dynamodb': 3.788.0(@aws-sdk/client-dynamodb@3.788.0)
+      '@smithy/core': 3.2.0
+      '@smithy/smithy-client': 4.2.0
+      '@smithy/types': 4.2.0
+      tslib: 2.8.1
+
   '@aws-sdk/middleware-endpoint-discovery@3.775.0':
     dependencies:
       '@aws-sdk/endpoint-cache': 3.723.0
@@ -1734,6 +1759,11 @@ snapshots:
   '@aws-sdk/types@3.775.0':
     dependencies:
       '@smithy/types': 4.2.0
+      tslib: 2.8.1
+
+  '@aws-sdk/util-dynamodb@3.788.0(@aws-sdk/client-dynamodb@3.788.0)':
+    dependencies:
+      '@aws-sdk/client-dynamodb': 3.788.0
       tslib: 2.8.1
 
   '@aws-sdk/util-endpoints@3.787.0':

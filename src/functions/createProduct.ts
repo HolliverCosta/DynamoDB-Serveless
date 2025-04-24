@@ -1,4 +1,4 @@
-import { PutItemCommand } from '@aws-sdk/client-dynamodb';
+import { PutCommand } from '@aws-sdk/lib-dynamodb';
 import type { APIGatewayProxyEventV2 } from 'aws-lambda';
 import { randomUUID } from 'node:crypto';
 import { dynamoClient } from 'src/lib/dynamoClient';
@@ -8,13 +8,13 @@ export async function handler(event: APIGatewayProxyEventV2) {
 
   const id = randomUUID();
 
-  const command = new PutItemCommand({
+  const command = new PutCommand({
     TableName: 'ProductsTable',
     Item: {
-      id: { S: id },
-      name: { S: body.name },
-      price: { N: body.price.toString() },
-      tags: { SS: body.tags },
+      id,
+      name: body.name ,
+      price: body.price.toString(),
+      tags: body.tags,
     }
   })
 
