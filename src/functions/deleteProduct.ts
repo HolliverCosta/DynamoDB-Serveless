@@ -1,13 +1,12 @@
 import type { APIGatewayProxyResult } from 'aws-lambda';
 
 export async function handler(event: APIGatewayProxyResult) {
-  const body = JSON.parse(event.body);
+  console.log(event)
 
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: 'List of products',
-      data: body,
+      message: 'deleteProduct',
   })
   }
 }

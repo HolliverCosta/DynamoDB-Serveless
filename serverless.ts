@@ -7,6 +7,26 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: 'aws',
     runtime: 'nodejs20.x',
+    iam: {
+      role: {
+
+        statements: [
+          {
+            Effect: 'Allow',
+            Action: [
+              'dynamodb:PutItem',
+              'dynamodb:DeleteItem',
+              'dynamodb:GetItem',
+              'dynamodb:UpdateItem',
+              'dynamodb:Scan',
+            ],
+            Resource: [
+              { "Fn::GetAtt" : [ "ProductsTable", "Arn" ] }
+            ]
+          }
+        ]
+      }
+    }
   },
   // import the function via paths
   package: { individually: true },
@@ -24,7 +44,7 @@ const serverlessConfiguration: AWS = {
   },
   functions: { 
     listProducts: {
-    handler: 'src/functions/listProducts.listProducts',
+    handler: 'src/functions/listProducts.handler',
     events: [
       {
       httpApi: {  
@@ -33,7 +53,51 @@ const serverlessConfiguration: AWS = {
         }, 
       },
     ]
-    }  
+    },
+    getProduct: {
+      handler: 'src/functions/getProduct.handler',
+      events: [
+        {
+        httpApi: {  
+          path: '/products/{productId}',  
+          method: 'GET',
+          }, 
+        },
+      ]
+    },
+    createProduct: {
+      handler: 'src/functions/createProduct.handler',
+      events: [
+        {
+        httpApi: {  
+          path: '/products',  
+          method: 'POST',
+          }, 
+        },
+      ]
+    },
+    deleteProduct: {
+      handler: 'src/functions/deleteProduct.handler',
+      events: [
+        {
+        httpApi: {  
+          path: '/products/{productId}',  
+          method: 'DELETE',
+          }, 
+        },
+      ]
+    },
+    updateProduct: {
+      handler: 'src/functions/updateProduct.handler',
+      events: [
+        {
+        httpApi: {  
+          path: '/products/{productId}',  
+          method: 'PUT',
+          }, 
+        },
+      ]
+    },       
   },
   resources: {
     Resources: {
